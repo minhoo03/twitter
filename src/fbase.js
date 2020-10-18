@@ -13,4 +13,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
+// 인증 기능 export
 export const authService = firebase.auth()
+
+

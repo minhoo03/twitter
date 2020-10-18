@@ -1,3 +1,5 @@
+// app의 요청에 따라 길을 터줌
+
 import React, { useState } from 'react'
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
 import Auth from '../router/Auth'
@@ -27,7 +29,9 @@ export default AppRouter
 // npx create-react-app
 // npm install --save firebase
 
-// key 설정
+// key 설정 env
 // npm install react-router-dom
 
-// 로그인 / 비로그인 (true 값 따져서) ROUTER
+// 로그인 / 비로그인 (true 값 따져서) ROUTER 
+
+// Auth 설정으로 로그인 폼

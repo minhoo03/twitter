@@ -1,25 +1,48 @@
+// 로그인 되지 않았을 시
+
+import { authService } from 'fbase'
 import React, { useState } from 'react'
 
 const Auth = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [newAcount, setNewAcount] = useState(true)
+
     const onChange = (event) => {
+        // const {name, value} = event.target
         const {target: {name, value}} = event
+
         if(name === "email"){
             setEmail(value)
         } else if(name === "password"){
             setPassword(value)
         }
     }
-    const onSubmit = (event) => {
+
+    const onSubmit = async (event) => {
+        // 새로고침 방지 / state 보존
         event.preventDefault()
+        let data
+        try{
+            if(newAcount){
+                // true : create acount
+                data = await authService.createUserWithEmailAndPassword(email, password)
+            } else{
+                // false : login
+                data = await authService.signInWithEmailAndPassword(email,password)
+            }
+            console.log(data)
+        } catch(error){
+            console.log(error)
+        }      
     }
+
     return(
         <div>
             <form onSubmit={onSubmit}>
-                <input name="email" type="text" placeholder="Email" required value = {email} onChange={onChange}/>
-                <input name="password" type="password" placeholder="password" required value = {password} onChange={onChange}/>
-                <input type="submit" value="Login" />
+                <input name="email" type="email" placeholder="Email" value = {email} onChange={onChange}/>
+                <input name="password" type="password" placeholder="password" value = {password} onChange={onChange}/>
+                <input type="submit" value={newAcount? "Create Acount" : "Login"} />
             </form>
             <div>
                 <button>Continue with Google</button>
@@ -30,3 +53,5 @@ const Auth = () => {
 }
 
 export default Auth
+
+// useState는 onChange에 의해 setEmail(value)... onChange가 끝나면 email 값이 바뀐게 적용
