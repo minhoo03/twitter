@@ -2,6 +2,7 @@
 
 import { authService } from 'fbase'
 import React, { useState } from 'react'
+import { firebaseInstance } from 'fbase'
 
 const Auth = () => {
     const [email, setEmail] = useState("")
@@ -20,16 +21,15 @@ const Auth = () => {
         }
     }
 
+    // true : create acount || false : Login
     const onSubmit = async (event) => {
         // 새로고침 방지 / state 보존
         event.preventDefault()
         let data
         try{
             if(newAcount){
-                // true : create acount
                 data = await authService.createUserWithEmailAndPassword(email, password)
             } else{
-                // false : login
                 data = await authService.signInWithEmailAndPassword(email,password)
             }
             console.log(data)
@@ -37,7 +37,22 @@ const Auth = () => {
             setError(error.message)
         }      
     }
-    // newAcount 값에 따라 회원가입 / 로그인
+
+    const onSocialClick = async (event) => {
+        const {target : {name}} = event
+        let provider
+
+        if(name === "google"){
+            // provider에 로그인 창 팝업
+            provider = new firebaseInstance.auth.GoogleAuthProvider()
+        } else if(name === "github"){
+            provider = new firebaseInstance.auth.GithubAuthProvider()
+        }
+
+        const data = await authService.signInWithPopup(provider)
+        console.log(data)
+    }
+    // newAcount 값에 따라 회원가입 / 로그인 : prev는 이전 값...
     const toggleAcount = () => setNewAcount(prev => !prev)
     return(
         <div>
@@ -49,13 +64,11 @@ const Auth = () => {
             {error}
             <span onClick={toggleAcount}>{newAcount ? "Login" : "Create Acount"}</span>
             <div>
-                <button>Continue with Google</button>
-                <button>Continue with Github</button>
+                <button name="google" onClick={onSocialClick}>Continue with Google</button>
+                <button name="github" onClick={onSocialClick}>Continue with Github</button>
             </div>
         </div>
     )
 }
 
 export default Auth
-
-// useState는 onChange에 의해 setEmail(value)... onChange가 끝나면 email 값이 바뀐게 적용

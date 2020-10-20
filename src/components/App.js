@@ -5,8 +5,6 @@ import React, { useEffect, useState } from 'react';
 import AppRouter from 'components/Router';
 import {authService} from "fbase"
 
-// authService.currentUser : 로그인 여부에 따라 true / false
-// firebase 로드 시간 탓에 false 결과 => useEffect에 따라 true
 function App() {
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser) // 로그인 유저 or null
@@ -17,11 +15,12 @@ function App() {
     authService.onAuthStateChanged((user) => {
       if(user){
         setIsLoggedIn(true)
+        console.log('로그인')
       } else{
         setIsLoggedIn(false)
+        console.log('비로그인')
       }
       setInit(true)
-      console.log(authService.currentUser)
     })
   })
   return (
