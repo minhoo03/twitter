@@ -24,6 +24,10 @@ const Home = ({userObj}) => {
     }
     useEffect(() => {
         getTweets()
+        // DB 상태 변화 감지
+        dbService.collection("tweets").onSnapshot(snapshot => {
+            console.log(`something happened`)
+        })
     }, [])
 
 
@@ -59,7 +63,7 @@ const Home = ({userObj}) => {
                 {/* tweets map => tweet에 담음 */}
                 {tweets.map((tweet) => (
                     <div key={tweet.id}>
-                        <h4>{tweet.tweet}</h4>
+                        <h4>{tweet.text}</h4>
                     </div>
                 ))}
             </div>
