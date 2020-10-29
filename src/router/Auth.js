@@ -32,7 +32,7 @@ const Auth = () => {
             } else{
                 data = await authService.signInWithEmailAndPassword(email,password)
             }
-            console.log(data)
+            // console.log(data)
         } catch(error){
             setError(error.message)
         }      
@@ -50,7 +50,7 @@ const Auth = () => {
         }
 
         const data = await authService.signInWithPopup(provider)
-        console.log(data)
+        // console.log(data)
     }
     // newAcount 값에 따라 회원가입 / 로그인 : prev는 이전 값...
     const toggleAcount = () => setNewAcount(prev => !prev)

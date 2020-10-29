@@ -8,7 +8,7 @@ import {authService} from "fbase"
 function App() {
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser) // 로그인 유저 or null
-  console.log(authService.currentUser)
+  // console.log(authService.currentUser)
 
   // mount - 사용자 변경 상태 확인 후 user에 담음
   useEffect(() => {
@@ -21,6 +21,10 @@ function App() {
         console.log('비로그인')
       }
       setInit(true)
+      // 1. init : false로 인해 Init...
+      // 2. 렌더링 후 else문 -> setInit(true)
+      // 3. 삼항연산자 > Router.js > auth.js
+      // 4. 로그인 시 isLoggedIn : true > Router.js > Home.js
     })
   })
   return (
