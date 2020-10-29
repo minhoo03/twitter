@@ -8,13 +8,14 @@ import {authService} from "fbase"
 function App() {
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser) // 로그인 유저 or null
-  // console.log(authService.currentUser)
+  const [userObj, setUserObj] = useState(null)
 
   // mount - 사용자 변경 상태 확인 후 user에 담음
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if(user){
         setIsLoggedIn(true)
+        setUserObj(user)
         console.log('로그인')
       } else{
         setIsLoggedIn(false)
@@ -29,7 +30,7 @@ function App() {
   })
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn} /> : "Initializing"}
+      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing"}
       <footer>&copy; {new Date().getFullYear()} Twitter</footer>
     </>
   );

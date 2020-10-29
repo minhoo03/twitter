@@ -52,6 +52,9 @@ const Auth = () => {
         const data = await authService.signInWithPopup(provider)
         // console.log(data)
     }
+
+
+    
     // newAcount 값에 따라 회원가입 / 로그인 : prev는 이전 값...
     const toggleAcount = () => setNewAcount(prev => !prev)
     return(
