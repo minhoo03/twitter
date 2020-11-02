@@ -1,4 +1,5 @@
 // Home.js / tweet
+// tweet - DB에 저장할 데이터 입력 / tweets - DB의 데이터 끌고온 state (tweet이란 지역변수에 값을 보내주어 화면에 DB값 출력)
 import { dbService } from 'fbase'
 import React, { useEffect, useState } from 'react'
 
@@ -7,7 +8,7 @@ const Home = ({userObj}) => {
     const [tweets, setTweets] = useState([])
 
 
-
+/*
     // DB의 내용 get
     const getTweets = async() => { // async이기에 개별함수
         const dbTweets = await dbService.collection("tweets").get()
@@ -22,11 +23,17 @@ const Home = ({userObj}) => {
         })
         console.log(`Get Tweets!!`)
     }
+*/
+
     useEffect(() => {
-        getTweets()
-        // DB 상태 변화 감지
+        // getTweets()
+        // DB 상태 변화 감지-변화 데이터를 담고 최근데이터, 이전값(모든 값) 들고옴
         dbService.collection("tweets").onSnapshot(snapshot => {
-            console.log(`something happened`)
+            const tweetArray = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }))
+            setTweets(tweetArray)
         })
     }, [])
 
@@ -45,6 +52,7 @@ const Home = ({userObj}) => {
         setTweet("")
         console.log(`Saved your Tweet to "collection"`)
     }
+
     const onChange = (event) => {
         const { target : { value }} = event
         setTweet(value)
@@ -60,7 +68,7 @@ const Home = ({userObj}) => {
                 <input onClick={onSubmit} type="submit" value="Tweet" />
             </form>
             <div>
-                {/* tweets map => tweet에 담음 */}
+                {/* tweets(DB값 저장 state) map => tweet 변수에 담음 */}
                 {tweets.map((tweet) => (
                     <div key={tweet.id}>
                         <h4>{tweet.text}</h4>
