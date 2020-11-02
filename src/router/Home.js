@@ -1,5 +1,6 @@
 // Home.js / tweet
 // tweet - DB에 저장할 데이터 입력 / tweets - DB의 데이터 끌고온 state (tweet이란 지역변수에 값을 보내주어 화면에 DB값 출력)
+import Tweet from 'components/Tweet'
 import { dbService } from 'fbase'
 import React, { useEffect, useState } from 'react'
 
@@ -70,9 +71,7 @@ const Home = ({userObj}) => {
             <div>
                 {/* tweets(DB값 저장 state) map => tweet 변수에 담음 */}
                 {tweets.map((tweet) => (
-                    <div key={tweet.id}>
-                        <h4>{tweet.text}</h4>
-                    </div>
+                    <Tweet key={tweet.id} tweetObj={tweet} isOwner={tweet.creatorId === userObj.uid} />
                 ))}
             </div>
         </div>
