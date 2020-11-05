@@ -1,8 +1,9 @@
 // Home.js / tweet
 // tweet - DB에 저장할 데이터 입력 / tweets - DB의 데이터 끌고온 state (tweet이란 지역변수에 값을 보내주어 화면에 DB값 출력)
 import Tweet from 'components/Tweet'
-import { dbService } from 'fbase'
+import { dbService, storageService } from 'fbase'
 import React, { useEffect, useState } from 'react'
+import {v4 as uuidv4} from 'uuid'
 
 const Home = ({userObj}) => {
     const [tweet, setTweet] = useState("")
@@ -24,13 +25,16 @@ const Home = ({userObj}) => {
     // DB에 저장
     const onSubmit = async (event) => {
         event.preventDefault()
-
-        await dbService.collection("tweets").add({
-            text: tweet,
-            createdAt: Date.now(),
-            creatorId: userObj.uid     
-        })
-        setTweet("")
+        // 폴더 : 유저네임 / 사진 이름 : uuid
+        const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`)
+        const response = await fileRef.putString(attachment, "data_url")
+        console.log(response)
+        // await dbService.collection("tweets").add({
+        //     text: tweet,
+        //     createdAt: Date.now(),
+        //     creatorId: userObj.uid     
+        // })
+        // setTweet("")
         console.log(`Saved your Tweet to "collection"`)
     }
     // state 저장
