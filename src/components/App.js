@@ -1,3 +1,5 @@
+// 3.6 Reacp 다시보기
+
 // 전체 로직을 다루는 application
 // fbase의 auth를 받아와 true/false를 state에 담아 props로 전송
 
@@ -11,6 +13,8 @@ function App() {
   const [userObj, setUserObj] = useState(null)
 
   // mount - 사용자 변경 상태 확인 후 user에 담음
+
+  // Auth 변화 => state 저장
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if(user){
@@ -30,8 +34,8 @@ function App() {
   })
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Initializing"}
-      <footer>&copy; {new Date().getFullYear()} Twitter</footer>
+      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "Loading..."}
+      <footer>&copy; {new Date().getFullYear()} Twitter 20306 김민후</footer>
     </>
   );
 }

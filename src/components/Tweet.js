@@ -6,6 +6,7 @@ const Tweet = ({tweetObj, isOwner}) => {
     const [ editing, setEditing ] = useState(false)
     const [ newTweet, setNewTweet ] = useState(tweetObj.text)
     
+    // delete
     const onDeleteClick = () => {
         const ok = window.confirm(`Are you sure you want to delete this tweet?`)
         console.log(ok)
@@ -17,6 +18,7 @@ const Tweet = ({tweetObj, isOwner}) => {
 
     const toggleEditing = () => setEditing(prev => !prev)
 
+    // update
     const onSubmit = (event) => {
         event.preventDefault()
         console.log(tweetObj, newTweet)
@@ -36,11 +38,17 @@ const Tweet = ({tweetObj, isOwner}) => {
                 editing ? 
                 ( 
                     <>
-                        <form onSubmit={onSubmit}>
-                            <input value={newTweet} required onChange={onChange} />
-                            <input type="submit" value="Update Tweet" />
-                        </form> 
-                        <button onClick={toggleEditing}>Cancel</button>
+                    {
+                        isOwner && (
+                            <>
+                                <form onSubmit={onSubmit}>
+                                    <input value={newTweet} required onChange={onChange} />
+                                    <input type="submit" value="Update Tweet" />
+                                </form> 
+                                <button onClick={toggleEditing}>Cancel</button>
+                            </>
+                        )
+                    }
                     </>
                 ) : (
                     <>
