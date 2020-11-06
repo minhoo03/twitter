@@ -25,16 +25,28 @@ const Home = ({userObj}) => {
     // DB에 저장
     const onSubmit = async (event) => {
         event.preventDefault()
-        // 폴더 : 유저네임 / 사진 이름 : uuid
-        const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`)
-        const response = await fileRef.putString(attachment, "data_url")
-        console.log(response)
-        // await dbService.collection("tweets").add({
-        //     text: tweet,
-        //     createdAt: Date.now(),
-        //     creatorId: userObj.uid     
-        // })
-        // setTweet("")
+        let attachmentUrl = ""
+
+        if(attachment != ""){
+            // 폴더 : 유저네임 / 사진 이름 : uuid
+            const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`)
+            // storage에 놓다
+            const response = await attachmentRef.putString(attachment, "data_url")
+            // storage에서 URL Download
+            attachmentUrl = await response.ref.getDownloadURL()
+        }
+
+        // tweet && image upload
+        const tweetObj = {
+            text: tweet,
+            createdAt: Date.now(),
+            creatorId: userObj.uid,
+            attachmentUrl
+        }
+        
+        await dbService.collection("tweets").add(tweetObj)
+        setTweet("")
+        setAttachment("")
         console.log(`Saved your Tweet to "collection"`)
     }
     // state 저장

@@ -53,6 +53,7 @@ const Tweet = ({tweetObj, isOwner}) => {
                 ) : (
                     <>
                     <h4>{tweetObj.text}</h4>
+                    {tweetObj.attachmentUrl && <img src={tweetObj.attachmentUrl}  width="500px" height="500px"/>}
                     {isOwner && (
                         <>
                         <button onClick={onDeleteClick}>Delete Tweet</button>
