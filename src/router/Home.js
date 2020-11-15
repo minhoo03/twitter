@@ -4,11 +4,14 @@ import Tweet from 'components/Tweet'
 import { dbService, storageService } from 'fbase'
 import React, { useEffect, useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
+const btnStyle = {
+    color: "#888888"
+  }
 
 const Home = ({userObj}) => {
     const [tweet, setTweet] = useState("")
     const [tweets, setTweets] = useState([])
-    const [attachment, setAttachment] = useState()
+    const [attachment, setAttachment] = useState("")
 
     // getTweets()
     useEffect(() => {
@@ -27,8 +30,8 @@ const Home = ({userObj}) => {
         event.preventDefault()
         let attachmentUrl = ""
 
-        if(attachment != ""){
-            // 폴더 : 유저네임 / 사진 이름 : uuid
+        if(attachment !== ""){
+            // 폴더 : 유저네임 / 사진 이름 : uuid... ↓url
             const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`)
             // storage에 놓다
             const response = await attachmentRef.putString(attachment, "data_url")
@@ -74,10 +77,10 @@ const Home = ({userObj}) => {
     }
 
     // 사진 Clear
-    const onClearAttachment = () => setAttachment(null)
+    const onClearAttachment = () => setAttachment("")
 
     return (
-        <div>
+        <div style={btnStyle}>
             <form>
                 <input value={tweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
                 <input type="file" accept="image/*" onChange={onFileChange} />
