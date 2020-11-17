@@ -7,7 +7,7 @@ const Navigation = ({userObj}) => (
     <nav>
         <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/profile">{userObj.displayName ? userObj.displayName : "사용자"}의 Profile</Link></li>
+            <li><Link to="/profile">{userObj.displayName ? userObj.displayName : userObj.displayName = "사용자"}의 Profile</Link></li>
         </ul>
     </nav>
 )

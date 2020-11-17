@@ -3,7 +3,7 @@ import { authService, dbService } from 'fbase'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-const Profile = ({userObj}) => {
+const Profile = ({refreshUser, userObj}) => {
     const history = useHistory()
     const [newDisplayName, setNewDisplayName] = useState(userObj.displayName)
 
@@ -12,6 +12,8 @@ const Profile = ({userObj}) => {
         history.push('/')
     }
 
+    // 내 게시글 가져오기
+    // DB의 where : 조건에 맞춰 data 끌고옴
     const getMyTweets = async () => {
         // 쿼리 추가 (noSQL이기에) : 필터링, 순서 등등 엮기 위해
         const tweets = await dbService.collection("tweets").where("creatorId", "==", userObj.uid).orderBy("createdAt").get()
@@ -27,6 +29,8 @@ const Profile = ({userObj}) => {
         setNewDisplayName(value)
     } 
 
+    // 변경된 name을 userObj의 displayName에 적용 후
+    // refreshUser로 새로 적용된 name 가져옴
     const onSubmit = async (event) => { 
         event.preventDefault()
 
@@ -35,6 +39,8 @@ const Profile = ({userObj}) => {
                 displayName: newDisplayName
             })
         }
+        // userObj 새로고침
+        refreshUser()
     }
 
     return(
