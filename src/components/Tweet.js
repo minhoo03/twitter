@@ -1,6 +1,10 @@
 import React, { useState } from "react"
 import { dbService, storageService } from 'fbase'
 
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 const Tweet = ({tweetObj, isOwner}) => {
 
     const [ editing, setEditing ] = useState(false)
@@ -52,15 +56,19 @@ const Tweet = ({tweetObj, isOwner}) => {
                     }
                     </>
                 ) : (
-                    <div className="content">
-                    <h4>{tweetObj.text}</h4>
-                    {tweetObj.attachmentUrl && <img src={tweetObj.attachmentUrl}  width="200px" height="200px"/>}
-                    {isOwner && (
-                        <>
-                        <button onClick={onDeleteClick}>Delete Tweet</button>
-                        <button onClick={toggleEditing}>Edit Tweet</button>
-                        </>
-                    )}
+                    <div className="content_tweet">
+                        <h4>{tweetObj.text}</h4>
+                        {tweetObj.attachmentUrl && <img src={tweetObj.attachmentUrl}  width="200px" height="200px"/>}
+                        {isOwner && (
+                            <>
+                            <button onClick={onDeleteClick}>
+                                <FontAwesomeIcon icon={faTrash} size="2x" />
+                            </button>
+                            <button onClick={toggleEditing}>
+                                <FontAwesomeIcon icon={faEdit} size="2x"/>
+                            </button>
+                            </>
+                        )}
                     </div>
                 ) 
             }

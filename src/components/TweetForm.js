@@ -4,6 +4,10 @@ import React, { useState } from "react"
 import {v4 as uuidv4} from 'uuid'
 import { dbService, storageService } from "fbase"
 
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 const TweetForm = ({userObj}) => {
     const [tweet, setTweet] = useState("")
     const [attachment, setAttachment] = useState("")
@@ -64,15 +68,17 @@ const TweetForm = ({userObj}) => {
 
 
     return (
-        <form>
-            <input value={tweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
-            <input type="file" accept="image/*" onChange={onFileChange} />
-            <input onClick={onSubmit} type="submit" value="Tweet" />
-            {attachment && <div>
-                    <img src={attachment} width="100px" height="100px" />
-                    <button onClick={onClearAttachment}>Clear</button>
-                </div>}
-        </form>
+        <div className="tweet_form">
+            <form>
+                <input value={tweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
+                <input onClick={onSubmit} type="submit" value="↑" /><br></br>
+                <input className="asd" type="file" accept="image/*" onChange={onFileChange} />
+                {attachment && <div>
+                        <img src={attachment} width="100px" height="100px" />
+                        <button onClick={onClearAttachment}>Clear</button>
+                    </div>}
+            </form>
+        </div>
     )
 }
 
