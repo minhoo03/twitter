@@ -8,6 +8,7 @@ import AppRouter from 'components/Router';
 import {authService} from "fbase"
 
 function App() {
+
   const [init, setInit] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser) // 로그인 유저 or null
   const [userObj, setUserObj] = useState(null)
@@ -50,7 +51,7 @@ function App() {
   return (
     <>
       {init ? <AppRouter refreshUser={refreshUser} isLoggedIn={isLoggedIn} userObj={userObj} /> : "Loading..."}
-      <footer>&copy; {new Date().getFullYear()} Twitter 20306 김민후</footer>
+      {/* <footer>&copy; {new Date().getFullYear()} Twitter 20306 김민후</footer> */}
     </>
   );
 }

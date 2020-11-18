@@ -52,7 +52,7 @@ const Tweet = ({tweetObj, isOwner}) => {
                     }
                     </>
                 ) : (
-                    <>
+                    <div className="content">
                     <h4>{tweetObj.text}</h4>
                     {tweetObj.attachmentUrl && <img src={tweetObj.attachmentUrl}  width="200px" height="200px"/>}
                     {isOwner && (
@@ -61,7 +61,7 @@ const Tweet = ({tweetObj, isOwner}) => {
                         <button onClick={toggleEditing}>Edit Tweet</button>
                         </>
                     )}
-                    </>
+                    </div>
                 ) 
             }
         </div>

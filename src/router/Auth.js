@@ -22,9 +22,11 @@ const Auth = () => {
     }
     
     return(
-        <div>
+        <div className="container">
+            <h2 className="logo"><img src="https://cdn.cms-twdigitalassets.com/content/dam/help-twitter/twitter_logo_blue.png" alt="logo" /></h2>
+            
             <AuthForm />
-            <div>
+            <div className="provider">
                 <button name="google" onClick={onSocialClick}>Continue with Google</button>
                 <button name="github" onClick={onSocialClick}>Continue with Github</button>
             </div>

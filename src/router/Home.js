@@ -4,10 +4,6 @@ import TweetForm from 'components/TweetForm'
 import { dbService, storageService } from 'fbase'
 import React, { useEffect, useState } from 'react'
 
-const btnStyle = {
-    color: "#888888"
-  }
-
 const Home = ({userObj}) => {
     const [tweets, setTweets] = useState([])
 
@@ -24,7 +20,7 @@ const Home = ({userObj}) => {
     }, [])
 
     return (
-        <div style={btnStyle}>
+        <div className="content">
             <TweetForm userObj={userObj}/>
             <div>
                 {/* tweets(DB값 저장 state) map => tweet 변수에 담음 */}
