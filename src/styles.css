@@ -7,7 +7,7 @@
     font-family: 'Montserrat', sans-serif;
     background: #000;
     font-weight: bold;
-    color: #fff;
+    color: #73a0e4;
 
     text-decoration: none;
     list-style-type: none;
@@ -16,6 +16,7 @@
 input {
     background: #fff;
     color: #000;
+    border: 1px solid #73a0e4;
 }
 
 button {
@@ -101,9 +102,11 @@ nav > ul {
     margin-bottom: 20px;
 }
 .content_tweet {
-    padding: 16px;
+    width: 600px;
+    margin: 0 auto;
+    padding: 32px;
     background: #000;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid rgb(37, 35, 35);
 }
 
 .content_tweet h4 {
@@ -118,6 +121,11 @@ nav > ul {
     margin: 0 auto;
 }
 
+img {
+    margin-top: 20px;
+    border-radius: 20px;
+    border: 3px solid #73a0e4;
+}
 .tweet_form > form > input:nth-child(1) {
     width: 300px;
     height: 40px;
@@ -138,7 +146,28 @@ nav > ul {
 }
 
 .asd {
-    width: 200px;
+    margin-top: 20px;
+    border-radius: 50px;
+}
 
-    background: none;
+.profile_name,
+.profile_button,
+.profile_submit {
+    display: flex;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    margin: 4px auto;
+    border-radius: 30px;
+}
+
+.profile_button {
+    background: #4369a1;
+    color: #fff;
+}
+
+.profile_submit {
+    background: #73a0e4;
+    color: #fff;
 }

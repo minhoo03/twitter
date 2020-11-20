@@ -45,13 +45,13 @@ const Tweet = ({tweetObj, isOwner}) => {
                     <>
                     {
                         isOwner && (
-                            <>
+                            <div className="content_tweet">
                                 <form onSubmit={onSubmit}>
-                                    <input value={newTweet} required onChange={onChange} />
-                                    <input type="submit" value="Update Tweet" />
+                                    <input className="profile_name" value={newTweet} required onChange={onChange} />
+                                    <input className="profile_submit" type="submit" value="Update Tweet" />
                                 </form> 
-                                <button onClick={toggleEditing}>Cancel</button>
-                            </>
+                                <button className="profile_button" onClick={toggleEditing}>Cancel</button>
+                            </div>
                         )
                     }
                     </>

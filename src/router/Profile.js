@@ -44,13 +44,13 @@ const Profile = ({refreshUser, userObj}) => {
     }
 
     return(
-        <>
-        <form onSubmit={onSubmit}>
-            <input type="text" placeholder="Display name" value={newDisplayName} onChange={onChange} />
-            <input type="submit" value="Update Profile" />
+        <div className="content_tweet">
+        <form onSubmit={onSubmit} className="profile">
+            <input className="profile_name" type="text" placeholder="Display name" value={newDisplayName} onChange={onChange} />
+            <input className="profile_submit" type="submit" value="Update Profile" />
         </form>
-            <button onClick={onLogOutClick}>Logout</button>
-        </>
+            <button className="profile_button" onClick={onLogOutClick}>Logout</button>
+        </div>
     )
 }
 
