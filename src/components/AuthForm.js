@@ -1,3 +1,4 @@
+// 회원가입 input
 import { authService } from 'fbase'
 import React from 'react'
 import { useState } from 'react'
@@ -46,7 +47,7 @@ const AuthForm = () => {
                 <input className="signupForm" name="password" type="password" placeholder="password" value = {password} onChange={onChange}/>
                 <input className="signup" type="submit" value={newAcount? "Create Acount" : "Login"}/>
             </form>
-            {error}
+            <span className="error">{error}</span>
             <p className="login" onClick={toggleAcount}>{newAcount ? "Login" : "Create Acount"}</p>
         </>
     )

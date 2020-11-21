@@ -39,6 +39,7 @@ button {
 .logo > img {
     width: 100px;
     height: 100px;
+    border: none;
 }
 
 /* id pw input */
@@ -170,4 +171,8 @@ img {
 .profile_submit {
     background: #73a0e4;
     color: #fff;
+}
+
+.error {
+    color: rgb(223, 32, 32);
 }

@@ -1,3 +1,4 @@
+// 가입 form 전체 틀
 // 로그인 되지 않았을 시
 
 import { authService } from 'fbase'
