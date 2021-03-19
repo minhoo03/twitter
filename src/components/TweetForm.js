@@ -1,12 +1,12 @@
 // Tweet Create form
 
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import {v4 as uuidv4} from 'uuid'
 import { dbService, storageService } from "fbase"
 
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { BiImageAdd } from 'react-icons/bi'
 
 const TweetForm = ({userObj}) => {
     const [tweet, setTweet] = useState("")
@@ -67,16 +67,26 @@ const TweetForm = ({userObj}) => {
     const onClearAttachment = () => setAttachment("")
 
 
+    const imageRef = useRef()
+
+    const handleClickInput = () => {
+        imageRef.current.click()
+    }
+
     return (
         <div className="tweet_form">
             <form>
-                <input value={tweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
-                <input onClick={onSubmit} type="submit" value="↑" /><br></br>
-                <input className="asd" type="file" accept="image/*" onChange={onFileChange} />
+                <input className="tweet_input" value={tweet} onChange={onChange} type="text" placeholder="What's on your mind?" maxLength={120} />
+                <div className="form_div">
+                    <BiImageAdd style={{width:'42px', height:'42px', color:'#5790e6', cursor:'pointer'}} onClick={handleClickInput} />
+                    <input onClick={onSubmit} type="submit" value="트윗" />                    
+                </div>
                 {attachment && <div>
                         <img src={attachment} width="100px" height="100px" />
                         <button onClick={onClearAttachment}>Clear</button>
-                    </div>}
+                    </div>
+                }
+                <input className="asd" type="file" accept="image/*" onChange={onFileChange} style={{display:'none'}} ref={imageRef} />
             </form>
         </div>
     )

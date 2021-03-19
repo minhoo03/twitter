@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.container {
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+
+    .logo,
+    .logo img {
+        max-width: 700px;
+        max-height: 700px;
+        border: 1px solid #fff;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .auth_input {
+        margin-top: 72px;
+        width: 100%;
+
+        input {
+            width: 100%;
+            height: 48px;
+            border: 1px solid #636363;
+            margin: 12px 0px;
+        }
+    }
+    .signup {
+        background: #73a0e4;
+        color: #fff;
+    }
+    .login {
+        text-align: center;
+        color: #73a0e4;
+    }
+
+    .provider {
+        margin-top: 16px;
+
+        button {
+            line-height: 48px;
+            height: 48px;
+            width: 100%;
+            border: none;
+        }
+
+        .google {
+            color: #fff;
+            background: #73a0e4;
+        }
+
+        .github {
+            color: #fff;
+            background: #000;
+        }
+    }
+}
+
+/* 2. Home.js / Nav.js / TweetForm.js */
+nav {
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/*  */
+
+.content {
+    width: 100%;
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+
+.content_tweet {
+    width: 600px;
+    margin: 0 auto;
+    padding: 32px 0px;
+    background: #fff;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    position: relative;
+}
+
+.content_tweet h6 {
+    font-weight: bold;
+}
+
+.content_tweet h4 {
+    color: #383838;
+    font-size: 22px;
+}
+
+.content_tweet img {
+    width: 300px;
+    height: 300px;
+}
+
+.Edit_tweet {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+/* */
+.tweet_form {
+    position: relative;
+    width: 600px;
+    margin: 0 auto;
+}
+
+img {
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid rgb(223, 223, 223);
+}
+
+.tweet_form {
+    form {
+        margin: 0 auto;
+        .tweet_input {
+            width: 600px;
+            height: 80px;
+            line-height: 40px;
+            padding: 0 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .form_div {
+            display: flex;
+            justify-content: flex-end;
+
+            input:nth-child(1) {
+                width: 80%;
+            }
+
+            input:nth-child(2) {
+                width: 20%;
+                cursor: pointer;
+                width: 80px;
+                height: 40px;
+                right: 0;
+                line-height: 40px;
+                padding: 0 10px;
+                background: #87afeb;
+                color: #fff;
+                border: none;
+
+                &:hover {
+                    background: #5790e6;
+                }
+            }
+        }
+    }
+}
+
+.profile_name,
+.profile_button,
+.profile_submit {
+    display: flex;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    margin: 4px auto;
+    border-radius: 30px;
+}
+
+.profile_button {
+    background: #4369a1;
+    color: #fff;
+}
+
+.profile_submit {
+    background: #73a0e4;
+    color: #fff;
+}
+
+.error {
+    color: rgb(223, 32, 32);
+}

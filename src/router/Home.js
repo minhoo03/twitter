@@ -1,6 +1,7 @@
 // Tweet get
 import Tweet from 'components/Tweet'
 import TweetForm from 'components/TweetForm'
+import Profile from 'router/Profile'
 import { dbService, storageService } from 'fbase'
 import React, { useEffect, useState } from 'react'
 

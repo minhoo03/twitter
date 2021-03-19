@@ -5,6 +5,7 @@ import { dbService, storageService } from 'fbase'
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai' 
 
 const Tweet = ({tweetObj, isOwner}) => {
 
@@ -58,17 +59,18 @@ const Tweet = ({tweetObj, isOwner}) => {
                     </>
                 ) : (
                     <div className="content_tweet">
+                        <h6>#tweet</h6>
                         <h4>{tweetObj.text}</h4>
                         {tweetObj.attachmentUrl && <img src={tweetObj.attachmentUrl}  width="200px" height="200px"/>}
                         {isOwner && (
-                            <>
+                            <div className="Edit_tweet">
                             <button onClick={onDeleteClick}>
-                                <FontAwesomeIcon icon={faTrash} size="2x" />
+                                <AiFillDelete />
                             </button>
                             <button onClick={toggleEditing}>
-                                <FontAwesomeIcon icon={faEdit} size="2x"/>
+                                <AiFillEdit />
                             </button>
-                            </>
+                            </div>
                         )}
                     </div>
                 ) 

@@ -6,6 +6,9 @@ import React, { useState } from 'react'
 import { firebaseInstance } from 'fbase'
 import AuthForm from 'components/AuthForm'
 
+import { AiFillGithub } from 'react-icons/ai'
+import {  FcGoogle } from 'react-icons/fc'
+
 const Auth = () => {
     
     const onSocialClick = async (event) => {
@@ -28,8 +31,8 @@ const Auth = () => {
             
             <AuthForm />
             <div className="provider">
-                <button name="google" onClick={onSocialClick}>Continue with Google</button>
-                <button name="github" onClick={onSocialClick}>Continue with Github</button>
+                <button className="google" name="google" onClick={onSocialClick}><FcGoogle /> Continue with Google</button>
+                <button className="github" name="github" onClick={onSocialClick}><AiFillGithub />Continue with Github</button>
             </div>
         </div>
     )

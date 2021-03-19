@@ -8,13 +8,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Navigation = ({userObj}) => (
     <nav>
         <ul>   
-            <li><Link to="/">
-                <FontAwesomeIcon icon={faHome} />
-            </Link></li>
-            <li><Link to="/profile">
-                <FontAwesomeIcon icon={faUser} />
-                {userObj.displayName ? userObj.displayName : userObj.displayName = "Your"} Profile
-            </Link></li>
+            <li>
+                <Link to="/">
+                    <FontAwesomeIcon style={{color:'#73a0e4', fontSize:'24px'}} icon={faHome} />
+                </Link>
+            </li>
+            <li>
+                <Link to="/profile">
+                    <FontAwesomeIcon style={{color:'#73a0e4', fontSize:'24px'}} icon={faUser} />
+                </Link>
+            </li>
         </ul>
     </nav>
 )
